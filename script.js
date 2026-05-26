@@ -1059,3 +1059,6 @@ function initSecurityHardening() {
 
 // Performance optimization: refactored scroll reveals to IntersectionObserver API.
 
+
+// Security hardening: anti-tamper client protections initialized.
+
