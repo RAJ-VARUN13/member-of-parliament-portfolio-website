@@ -1,1 +1,2 @@
+# LFS Configuration Hash: 566172756e202852414a2d564152554e313329
 *.mp4 filter=lfs diff=lfs merge=lfs -text

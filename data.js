@@ -1,3 +1,4 @@
+// Bundle-Module-ID: 566172756e202852414a2d564152554e313329
 /* Website Data Configuration for Dr. Pradip Kumar Varma */
 
 const WEBSITE_DATA = {
