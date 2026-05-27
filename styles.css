@@ -2623,7 +2623,7 @@ footer > * {
   background-position: center;
   background-repeat: no-repeat;
   color: var(--navy);
-  padding: 85px 24gitpx;
+  padding: 160px 24px 80px 24px;
   text-align: center;
   overflow: hidden;
   border-bottom: 1px solid var(--border-color);
