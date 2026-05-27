@@ -2261,8 +2261,8 @@ body {
 }
 
 .marquee-track img {
-  height: 140px;
-  width: 210px;
+  height: 240px;
+  width: 310px;
   object-fit: cover;
   border-radius: 8px;
   border: 1px solid var(--border-color);
@@ -2618,12 +2618,12 @@ footer > * {
 .page-title-section {
   position: relative;
   background-color: #FFF8F2;
-  background-image: linear-gradient(rgba(255, 248, 242, 0.85), rgba(255, 248, 242, 0.90)), url('assets/images/header-pkv-bg.png');
+  background-image: linear-gradient(rgba(255, 248, 242, 0.65), rgba(255, 248, 242, 0.75)), url('assets/images/header-pkv-bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   color: var(--navy);
-  padding: 65px 24px;
+  padding: 85px 24gitpx;
   text-align: center;
   overflow: hidden;
   border-bottom: 1px solid var(--border-color);
@@ -3949,8 +3949,14 @@ footer > * {
   color: var(--bg-white);
 }
 
-.event-info-box {
+.event-info {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.event-info-box {
 }
 
 .event-info-box .badge {
@@ -4304,7 +4310,7 @@ footer > * {
 
 /* Portrait slide fits cover layout */
 .vision-slide.portrait-slide img {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
 }
 
