@@ -57,7 +57,7 @@ body::before {
   background-image: url('assets/images/sohrai_watermark.png');
   background-repeat: repeat;
   background-size: 320px;
-  opacity: 0.095; /* Boldly visible doodle watermark (like WhatsApp chat background) */
+  opacity: 0.1; /* Boldly visible doodle watermark (like WhatsApp chat background) */
   pointer-events: none;
   z-index: 0; /* Placed behind main relative container, headers, and footers */
 }
@@ -2255,7 +2255,7 @@ body {
   display: flex;
   gap: 20px;
   width: max-content;
-  animation: scrollMarquee 35s linear infinite;
+  animation: scrollMarquee 65s linear infinite;
 }
 
 .marquee-track img {
