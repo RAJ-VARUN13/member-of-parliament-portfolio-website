@@ -3523,6 +3523,10 @@ footer > * {
     grid-template-columns: 1fr;
   }
   
+  .contact-map-area {
+    height: 450px !important;
+  }
+  
   .support-grid {
     grid-template-columns: 1fr;
   }
