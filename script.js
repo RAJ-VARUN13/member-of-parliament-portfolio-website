@@ -991,6 +991,14 @@ function animateCounter(el) {
 /* Security Hardening, Anti-Inspection, and Clickjacking Protection           */
 /* ========================================================================== */
 function initSecurityHardening() {
+  // Bypass security protections if running locally (localhost / 127.0.0.1 / file://) or if ?dev query parameter is present
+  const urlParams = new URLSearchParams(window.location.search);
+  const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
+  if (urlParams.has('dev') || isLocal) {
+    console.log("Developer Mode Active: Anti-tamper inspection locks bypassed.");
+    return;
+  }
+
   // 1. Clickjacking Protection (Frame-Busting)
   if (window.self !== window.top) {
     try {
@@ -1050,15 +1058,4 @@ function initSecurityHardening() {
   }, 1000);
 }
 
-
-// Performance optimization: GSAP refactored to Vanilla JS IntersectionObserver.
-
-
-// Security hardening: Client-side tampering protection enabled.
-
-
-// Performance optimization: refactored scroll reveals to IntersectionObserver API.
-
-
-// Security hardening: anti-tamper client protections initialized.
 
