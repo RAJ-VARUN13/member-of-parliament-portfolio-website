@@ -298,7 +298,9 @@ function renderAllDynamicContent() {
       if (videoPlayer) {
         videoPlayer.src = videoSrc;
         videoPlayer.load();
-        videoPlayer.play().catch(err => console.log('Autoplay block bypassed.'));
+        videoPlayer.play().catch(err => {
+          // Silent catch for autoplay restrictions
+        });
       }
 
       if (mainVideoTitle) mainVideoTitle.textContent = videoTitle;
@@ -775,7 +777,6 @@ window.playHomeVideo = (coverEl) => {
 
 document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
-  initSecurityHardening();
 });
 
 function initScrollAnimations() {
@@ -989,74 +990,5 @@ function animateCounter(el) {
 }
 
 /* ========================================================================== */
-/* Security Hardening, Anti-Inspection, and Clickjacking Protection           */
+/* End of Script */
 /* ========================================================================== */
-function initSecurityHardening() {
-  // Bypass security protections if running locally (localhost / 127.0.0.1 / file://) or if ?dev query parameter is present
-  const urlParams = new URLSearchParams(window.location.search);
-  const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
-  if (urlParams.has('dev') || isLocal) {
-    console.log("Developer Mode Active: Anti-tamper inspection locks bypassed.");
-    return;
-  }
-
-  // 1. Clickjacking Protection (Frame-Busting)
-  if (window.self !== window.top) {
-    try {
-      window.top.location = window.self.location;
-    } catch (e) {
-      window.location = "about:blank";
-    }
-  }
-
-  // 2. Prevent Right-Click Context Menu
-  document.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-  }, false);
-
-  // 3. Block Keyboard shortcuts for Inspect Element, Developer Console, and View Source
-  document.addEventListener('keydown', (e) => {
-    // F12
-    if (e.key === 'F12' || e.keyCode === 123) {
-      e.preventDefault();
-      return false;
-    }
-    // Ctrl+Shift+I (Chrome/Edge/Firefox DevTools)
-    if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) {
-      e.preventDefault();
-      return false;
-    }
-    // Ctrl+Shift+J (DevTools Console)
-    if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j' || e.keyCode === 74)) {
-      e.preventDefault();
-      return false;
-    }
-    // Ctrl+Shift+C (Inspect Element selector)
-    if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c' || e.keyCode === 67)) {
-      e.preventDefault();
-      return false;
-    }
-    // Ctrl+U (View Source)
-    if (e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.keyCode === 85)) {
-      e.preventDefault();
-      return false;
-    }
-    // Ctrl+S (Save Page)
-    if (e.ctrlKey && (e.key === 'S' || e.key === 's' || e.keyCode === 83)) {
-      e.preventDefault();
-      return false;
-    }
-  }, false);
-
-  // 4. Anti-Debugger / Console Detection to deter advanced inspection
-  setInterval(() => {
-    const startTime = performance.now();
-    debugger;
-    const endTime = performance.now();
-    if (endTime - startTime > 100) {
-      console.warn("Security policy violation: debugger detected.");
-    }
-  }, 1000);
-}
-
-
